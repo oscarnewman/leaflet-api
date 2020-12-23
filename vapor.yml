@@ -2,6 +2,7 @@ id: 16639
 name: Leaflet
 environments:
     production:
+        database: vapor_prod
         memory: 1024
         cli-memory: 512
         runtime: php-7.4
@@ -15,6 +16,7 @@ environments:
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
     staging:
+        database: vapor_staging
         memory: 1024
         cli-memory: 512
         runtime: php-7.4
