@@ -1,33 +1,19 @@
-id: 16639
-name: Leaflet
+id: 16641
+name: leaflet-api
 environments:
     production:
-        database: leaflet-db
         memory: 1024
         cli-memory: 512
         runtime: php-7.4
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
-        deploy:
-            - 'php artisan migrate --force'
-    production2:
-        database: leaflet-db
-        memory: 1024
-        cli-memory: 512
-        runtime: php-7.4
-        build:
-            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
-            - 'php artisan event:cache'
-        deploy:
-            - 'php artisan migrate --force'
+            - 'npm ci && npm run prod && rm -rf node_modules'
     staging:
-        database: leaflet-db
         memory: 1024
         cli-memory: 512
         runtime: php-7.4
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
             - 'php artisan event:cache'
-         deploy:
-            - 'php artisan migrate --force'
+            - 'npm ci && npm run dev && rm -rf node_modules'
