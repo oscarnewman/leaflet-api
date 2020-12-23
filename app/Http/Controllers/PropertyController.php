@@ -13,7 +13,7 @@ class PropertyController extends Controller
 {
     public function index(Request $request)
     {
-        return Property::paginate(9);
+        return Property::orderBy('start_date', 'asc')->paginate(12);
     }
 
     public function show(Property $property)
