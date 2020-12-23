@@ -2,7 +2,7 @@ id: 16639
 name: Leaflet
 environments:
     production:
-        database: vapor_prod
+        database: leaflet_prod
         memory: 1024
         cli-memory: 512
         runtime: php-7.4
@@ -12,11 +12,8 @@ environments:
             - 'npm install && npm run prod && rm -rf node_modules'
         deploy:
             - 'php artisan migrate --force'
-    'pull:production':
-        build:
-            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
     staging:
-        database: vapor_staging
+        database: leaflet_staging
         memory: 1024
         cli-memory: 512
         runtime: php-7.4
