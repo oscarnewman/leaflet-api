@@ -4,17 +4,20 @@ environments:
     production:
         memory: 1024
         cli-memory: 512
-        runtime: 'php-7.4'
+        runtime: php-7.4
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
             - 'npm install && npm run prod && rm -rf node_modules'
         deploy:
             - 'php artisan migrate --force'
+    'pull:production':
+        build:
+            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
     staging:
         memory: 1024
         cli-memory: 512
-        runtime: 'php-7.4'
+        runtime: php-7.4
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
             - 'php artisan event:cache'
