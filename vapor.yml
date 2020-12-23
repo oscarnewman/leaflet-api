@@ -2,7 +2,7 @@ id: 16639
 name: Leaflet
 environments:
     production:
-        database: leaflet_prod
+        database: leaflet-db
         memory: 1024
         cli-memory: 512
         runtime: php-7.4
@@ -13,7 +13,7 @@ environments:
         deploy:
             - 'php artisan migrate --force'
     staging:
-        database: leaflet_staging
+        database: leaflet-db
         memory: 1024
         cli-memory: 512
         runtime: php-7.4
