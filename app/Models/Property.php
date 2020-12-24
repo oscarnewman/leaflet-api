@@ -40,8 +40,20 @@ class Property extends BaseModel
 {
     use HasFactory;
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['images'];
+
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function images()
+    {
+        return $this->belongsToMany(Image::class, 'property_image');
     }
 }
