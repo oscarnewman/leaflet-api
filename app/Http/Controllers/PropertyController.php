@@ -31,7 +31,14 @@ class PropertyController extends Controller
             $results = $results->whereDate('end_date', '<=', $request->endDate);
         }
 
-        return $results->paginate();
+        if ($request->has('rentMin')) {
+            $results = $results->where('rent', '>=', $request->rentMin);
+        }
+        if ($request->has('rentMax')) {
+            $results = $results->where('rent', '<=', $request->rentMax);
+        }
+
+        return $results->paginate(9);
     }
 
     /**

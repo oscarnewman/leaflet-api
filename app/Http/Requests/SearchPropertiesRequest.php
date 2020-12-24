@@ -26,7 +26,9 @@ class SearchPropertiesRequest extends FormRequest
         return [
             'bedrooms' => 'integer',
             'startDate' => 'date',
-            'endDate' => 'date'
+            'endDate' => 'date',
+            'rentMin' => "integer",
+            'rentMax' => 'integer',
         ];
     }
 }
