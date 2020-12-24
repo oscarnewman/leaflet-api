@@ -26,7 +26,6 @@ class CreatePostRequest extends FormRequest
         return [
             'bedrooms' => 'integer|min:1|max:15',
             'rent' => 'integer|min:0|max:10000',
-            ''
         ];
     }
 }
