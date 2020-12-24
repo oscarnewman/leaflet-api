@@ -26,8 +26,7 @@ class PropertyFactory extends Factory
             'bedrooms' => $this->faker->randomDigitNot(0),
             'rent' => floor($this->faker->numberBetween(500, 1500) / 10) * 10,
             'start_date' => $this->faker->dateTimeBetween('now', '+ 2 months'),
-            'end_date' => $this->faker->dateTimeBetween('+ 2 months', '+ 6 months'),
-            'image' => $this->faker->imageUrl(500, 500, 'apartment')
+            'end_date' => $this->faker->dateTimeBetween('+ 2 months', '+ 6 months')
         ];
     }
 }
