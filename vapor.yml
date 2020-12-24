@@ -8,10 +8,10 @@ environments:
         domain: api.leaflet.rent
         database: leaflet-db
         build:
-            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
-            - 'php artisan event:cache'
+            - "COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev"
+            - "php artisan event:cache"
         deploy:
-            - 'php artisan migrate --force'
+            - "php artisan migrate --force"
     staging:
         memory: 1024
         cli-memory: 512
@@ -19,7 +19,7 @@ environments:
         domain: staging-api.leaflet.rent
         database: leaflet-db
         build:
-            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
-            - 'php artisan event:cache'
+            - "COMPOSER_MIRROR_PATH_REPOS=1 composer install"
+            - "php artisan event:cache"
         deploy:
-            - 'php artisan migrate --force'
+            - "php artisan migrate:seed --fresh --force"
