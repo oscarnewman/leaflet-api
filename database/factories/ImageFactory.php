@@ -21,7 +21,7 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
-        $picId = $this->faker->numberBetween(1, 12);
+        $picId = $this->faker->numberBetween(1, 11);
         return [
             'url' => "https://res.cloudinary.com/saythanks/image/upload/v1608836159/leaflet/apt_$picId.jpg",
             'width' => 500,

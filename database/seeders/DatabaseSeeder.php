@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->has(Property::factory(1)->has(Image::factory(5)))->create();
+        \App\Models\User::factory(50)->has(Property::factory(1)->has(Image::factory(5)))->create();
     }
 }

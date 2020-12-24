@@ -22,4 +22,4 @@ environments:
             - "COMPOSER_MIRROR_PATH_REPOS=1 composer install"
             - "php artisan event:cache"
         deploy:
-            - "php artisan migrate:seed --fresh --force"
+            - "php artisan migrate:fresh --seed --force"
