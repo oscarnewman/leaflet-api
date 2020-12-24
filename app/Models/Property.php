@@ -40,12 +40,7 @@ class Property extends BaseModel
 {
     use HasFactory;
 
-    /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
-    protected $with = ['images'];
+    protected $appends = ['featured_image'];
 
     public function user()
     {
@@ -55,5 +50,10 @@ class Property extends BaseModel
     public function images()
     {
         return $this->belongsToMany(Image::class, 'property_image');
+    }
+
+    public function getFeaturedImageAttribute()
+    {
+        return $this->images()->first();
     }
 }

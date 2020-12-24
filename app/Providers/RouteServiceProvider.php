@@ -40,14 +40,6 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
-        Route::bind('property', function ($value) {
-            if (!Uuid::isValid($value)) {
-                throw (new ModelNotFoundException())->setModel(Property::class, $value);
-            }
-
-            return Property::findOrFail($value);
-        });
-
         $this->routes(function () {
             Route::middleware('api')
                 ->namespace($this->namespace)

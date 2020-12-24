@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Ramsey\Uuid\Uuid;
 
 /**
  * App\Models\BaseModel
@@ -18,4 +20,13 @@ class BaseModel extends Model
     protected $keyType = 'string';
 
     public $incrementing = true;
+
+    public function findOrFail($id)
+    {
+        if (!Uuid::isValid($id)) {
+            throw (new ModelNotFoundException())->setModel(this::class, $id);
+        }
+
+        return parent::findOrFail($id);
+    }
 }
