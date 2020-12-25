@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -34,7 +35,15 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['image' => 'file|required']);
+
+        $result = $request->file('image')->storeOnCloudinary('leaflet', 'uploads');
+
+        return Image::create([
+            'url' => $result->getSecurePath(),
+            'width' => $result->getWidth(),
+            'height' => $result->getHeight()
+        ]);
     }
 
     /**

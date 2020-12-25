@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends BaseModel
 {
     use HasFactory;
+
+    protected $fillable = ['url', 'width', 'height'];
 }

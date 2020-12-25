@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PropertyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::resource('properties', PropertyController::class)->only(['index', 'show', 'store']);
+
+Route::resource('images', ImageController::class)->only('store');
 
 // Route::post('/login', [AuthController::class, 'login']);
 // Route::post('/logout', [AuthController::class, 'logout']);
