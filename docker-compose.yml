@@ -34,11 +34,11 @@ services:
         ports:
             - "${FORWARD_DB_PORT:-5432}:5432"
         environment:
-            - POSTGRES_DB=postgres
+            - POSTGRES_DB=leaflet
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
         volumes:
-            - "sailmysql:/var/lib/postgres"
+            - "sailpg:/data"
         networks:
             - sail
     redis:
@@ -69,4 +69,6 @@ volumes:
     sailmysql:
         driver: local
     sailredis:
+        driver: local
+    sailpg:
         driver: local

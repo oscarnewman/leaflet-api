@@ -42,6 +42,8 @@ class Property extends BaseModel
 
     protected $appends = ['featured_image'];
 
+    protected $fillable = ['area', 'bedrooms', 'rent', 'start_date', 'end_date'];
+
     public function user()
     {
         return $this->hasOne(User::class);

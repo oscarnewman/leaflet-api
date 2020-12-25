@@ -15,10 +15,10 @@ class AddPropertyImages extends Migration
     {
         Schema::create('property_image', function (Blueprint $table) {
             $table->uuid('property_id')->index();
-            $table->foreign('property_id')->references('id')->on('properties');
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete('CASCADE');
 
             $table->uuid('image_id')->index();
-            $table->foreign('image_id')->references('id')->on('images');
+            $table->foreign('image_id')->references('id')->on('images')->onDelete('CASCADE');;
 
             $table->integer('order')->index()->default(0);
 

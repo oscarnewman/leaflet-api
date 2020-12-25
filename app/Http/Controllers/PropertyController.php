@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SearchProperties;
+use App\Actions\Fortify\CreateNewUser;
+use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\SearchPropertiesRequest;
 use App\Models\Property;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Auth;
+use DB;
 
 /**
  * Class PropertyController
@@ -25,10 +28,10 @@ class PropertyController extends Controller
         }
 
         if ($request->has('startDate')) {
-            $results = $results->whereDate('start_date', '>=', $request->startDate);
+            $results = $results->whereDate('start_date', '<=', $request->startDate);
         }
         if ($request->has('endDate')) {
-            $results = $results->whereDate('end_date', '<=', $request->endDate);
+            $results = $results->whereDate('end_date', '>=', $request->endDate);
         }
 
         if ($request->has('rentMin')) {
@@ -49,7 +52,31 @@ class PropertyController extends Controller
         return $property->load('images');
     }
 
-    public function create($request)
+    /**
+     * Create a new user and property at the same time
+     */
+    public function store(CreatePropertyRequest $request, CreateNewUser $createNewUser)
     {
+        return DB::transaction(function () use ($createNewUser, $request) {
+
+            $user = $request->user();
+            if (!$user) {
+                $request->validate(['email' => 'required|unique:users|email', 'name' => 'required']);
+                $user = $createNewUser->create($request->only('email', 'name'));
+                Auth::login($user);
+            }
+
+            $property = $user->properties()->create(
+                array_merge(
+                    $request->except('email', 'name', 'startDate', 'endDate'),
+                    [
+                        'start_date' => $request->startDate,
+                        'end_date' => $request->endDate
+                    ]
+                )
+            );
+
+            return ['user' => $user, 'property' => $property];
+        });
     }
 }
