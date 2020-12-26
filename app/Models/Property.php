@@ -42,16 +42,17 @@ class Property extends BaseModel
 
     protected $appends = ['featured_image'];
 
-    protected $fillable = ['area', 'bedrooms', 'rent', 'start_date', 'end_date'];
+    protected $fillable = ['user', 'area', 'bedrooms', 'rent', 'start_date', 'end_date'];
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function images()
     {
-        return $this->belongsToMany(Image::class, 'property_image');
+        return $this->belongsToMany(Image::class, 'property_image')
+            ->orderBy('property_image.order');
     }
 
     public function getFeaturedImageAttribute()

@@ -38,7 +38,7 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
         volumes:
-            - "sailpg:/data"
+            - "sailpg:/var/lib/postgresql/data"
         networks:
             - sail
     redis:
