@@ -21,7 +21,6 @@
         "laravel/vapor-cli": "^1.11",
         "laravel/vapor-core": "^2.10",
         "laravel/vapor-ui": "^1.0",
-        "sentry/sentry-laravel": "^2.3",
         "laravel/nova": "*"
     },
     "require-dev": {
